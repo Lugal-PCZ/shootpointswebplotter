@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/shootpointswebplotter" >
+        <file>prism.png</file>
+    </qresource>
+</RCC>

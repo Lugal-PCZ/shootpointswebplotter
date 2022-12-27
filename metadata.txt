@@ -1,0 +1,26 @@
+[general]
+name=ShootPoints-Web Plotter
+description=Plots ShootPoints-Web data
+about=Quickly plot shapefiles of total station data collected with ShootPoints-Web.
+
+    This plugin is not necessary for plotting exports of ShootPoints-Web session
+    data (which are saved as shapefiles), but is a convenience for quickly plotting,
+    grouping, and styling those shapefiles.
+    
+    Its minimal interface will prompt you to select a directory of exported
+    ShootPoints-Web data, from which it will extract the session information,
+    plot any shapefiles in the <i>gis_shapefiles</i> subdirectory, group those
+    new layers in sub-groups of a <i>ShootPoints Data</i> group, and apply
+    layer styles supplied with this plugin.
+
+version=1.0
+qgisMinimumVersion=3.0
+author=Paul C. Zimmerman
+email=paul@lugal.com
+repository=https://github.com/Lugal-PCZ/shootpointswebplotter
+homepage=https://github.com/Lugal-PCZ/ShootPoints-Web
+icon=prism.png
+
+; optional metadata
+category=Vector
+tags=total station,surveying,archaeology
