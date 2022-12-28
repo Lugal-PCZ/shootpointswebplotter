@@ -19,6 +19,7 @@ author=Paul C. Zimmerman
 email=paul@lugal.com
 repository=https://github.com/Lugal-PCZ/shootpointswebplotter
 homepage=https://github.com/Lugal-PCZ/ShootPoints-Web
+tracker=https://github.com/Lugal-PCZ/shootpointswebplotter/issues
 icon=prism.png
 
 ; optional metadata
