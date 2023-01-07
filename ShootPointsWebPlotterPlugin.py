@@ -38,20 +38,21 @@ class ShootPointsWebPlotterPlugin:
 
     def get_data_directory_path(self) -> str:
         thepath = QFileDialog.getExistingDirectory()
-        if not os.path.isfile(f"{thepath}/session_info.json"):
-            self.iface.messageBar().pushMessage(
-                "Error",
-                f"The <i>{os.path.basename(thepath)}</i> directory is not a valid ShootPoints-Web export.",
-                level=Qgis.Critical,
-            )
-            thepath = None
-        elif not os.path.isdir(f"{thepath}/gis_shapefiles"):
-            self.iface.messageBar().pushMessage(
-                "Notice",
-                f"There are no shapefiles in the <i>{os.path.basename(thepath)}</i> export.",
-                level=Qgis.Warning,
-            )
-            thepath = None
+        if thepath:
+            if not os.path.isfile(f"{thepath}/session_info.json"):
+                self.iface.messageBar().pushMessage(
+                    "Error",
+                    f"The <i>{os.path.basename(thepath)}</i> directory is not a valid ShootPoints-Web export.",
+                    level=Qgis.Critical,
+                )
+                thepath = None
+            elif not os.path.isdir(f"{thepath}/gis_shapefiles"):
+                self.iface.messageBar().pushMessage(
+                    "Notice",
+                    f"There are no shapefiles in the <i>{os.path.basename(thepath)}</i> export.",
+                    level=Qgis.Warning,
+                )
+                thepath = None
         return thepath
 
     def find_or_create_shootpoints_data_group(self) -> QgsLayerTreeNode:
@@ -76,7 +77,6 @@ class ShootPointsWebPlotterPlugin:
         return sessiongroup
 
     def get_styles_path(self) -> str:
-        # TODO: allow the user to override this via the GUI
         stylespath = f"{os.path.dirname(__file__)}/styles/"
         return stylespath
 
