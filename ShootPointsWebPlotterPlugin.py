@@ -86,6 +86,7 @@ class ShootPointsWebPlotterPlugin:
             "allshots.shp",
             "openpolygons.shp",
             "closedpolygons.shp",
+            "spatialcontrol.shp",
         ]
         crssetting = QgsSettings().value("app/projections/unknownCrsBehavior")
         QgsSettings().setValue("app/projections/unknownCrsBehavior", "UseProjectCrs")

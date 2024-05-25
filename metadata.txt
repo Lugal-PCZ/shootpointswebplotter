@@ -13,7 +13,7 @@ about=Quickly plot shapefiles of total station data collected with ShootPoints-W
     new layers in sub-groups of a <i>ShootPoints Data</i> group, and apply
     layer styles supplied with this plugin.
 
-version=1.0.1
+version=1.1.0
 qgisMinimumVersion=3.0
 author=Paul C. Zimmerman
 email=paul@lugal.com
