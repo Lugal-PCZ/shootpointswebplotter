@@ -1,5 +1,6 @@
 import os
 import json
+from pathlib import Path
 from PyQt5.QtWidgets import QAction, QFileDialog
 from PyQt5.QtGui import QIcon
 from qgis.core import *
@@ -39,14 +40,14 @@ class ShootPointsWebPlotterPlugin:
     def get_data_directory_path(self) -> str:
         thepath = QFileDialog.getExistingDirectory()
         if thepath:
-            if not os.path.isfile(f"{thepath}/session_info.json"):
+            if not os.path.isfile(str(Path(thepath) / "session_info.json")):
                 self.iface.messageBar().pushMessage(
                     "Error",
                     f"The <i>{os.path.basename(thepath)}</i> directory is not a valid ShootPoints-Web export.",
                     level=Qgis.Critical,
                 )
                 thepath = None
-            elif not os.path.isdir(f"{thepath}/gis_shapefiles"):
+            elif not os.path.isdir(str(Path(thepath) / "gis_shapefiles")):
                 self.iface.messageBar().pushMessage(
                     "Notice",
                     f"There are no shapefiles in the <i>{os.path.basename(thepath)}</i> export.",
@@ -70,14 +71,16 @@ class ShootPointsWebPlotterPlugin:
     def create_session_group(
         self, datadirpath, shootpointsdatagroup
     ) -> QgsLayerTreeNode:
-        with open(f"{datadirpath}/session_info.json", "r") as f:
+        with open(
+            str(Path(datadirpath) / "session_info.json"), "r", encoding="utf8"
+        ) as f:
             sessioninfo = json.load(f)
             sessionlabel = sessioninfo["session"]["label"]
             sessiongroup = shootpointsdatagroup.addGroup(sessionlabel)
         return sessiongroup
 
     def get_styles_path(self) -> str:
-        stylespath = f"{os.path.dirname(__file__)}/styles/"
+        stylespath = str(Path(os.path.dirname(__file__)) / "styles")
         return stylespath
 
     def plot_data(self, datadirpath, stylespath, sessiongroup) -> None:
@@ -91,14 +94,14 @@ class ShootPointsWebPlotterPlugin:
         crssetting = QgsSettings().value("app/projections/unknownCrsBehavior")
         QgsSettings().setValue("app/projections/unknownCrsBehavior", "UseProjectCrs")
         for eachfile in datafiles:
-            if os.path.isfile(f"{datadirpath}/gis_shapefiles/{eachfile}"):
+            if os.path.isfile(str(Path(datadirpath) / "gis_shapefiles" / eachfile)):
                 layername = eachfile[:-4]
                 newlayer = QgsVectorLayer(
-                    f"{datadirpath}/gis_shapefiles/{eachfile}",
+                    str(Path(datadirpath) / "gis_shapefiles" / eachfile),
                     layername,
                     "ogr",
                 )
                 QgsProject.instance().addMapLayer(newlayer, False)
-                newlayer.loadNamedStyle(f"{stylespath}{layername}.qml")
+                newlayer.loadNamedStyle(str(Path(stylespath) / f"{layername}.qml"))
                 sessiongroup.addLayer(newlayer)
         QgsSettings().setValue("app/projections/unknownCrsBehavior", crssetting)

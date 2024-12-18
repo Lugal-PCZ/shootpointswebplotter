@@ -1,6 +1,6 @@
 # ShootPoints-Web Plotter
 
-Quickly plot shapefiles of total station data collected with [ShootPoints-Web](https://github.com/Lugal-PCZ/ShootPoints-Web) in [QGIS](https://qgis.org) with this simple plugin.
+Quickly plot shapefiles of total station data collected with [ShootPoints-Web](https://shootpoints.io) in [QGIS](https://qgis.org) with this simple plugin.
 
 ## How to use it?
 
