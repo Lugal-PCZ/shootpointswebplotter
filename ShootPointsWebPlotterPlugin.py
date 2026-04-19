@@ -1,8 +1,8 @@
 import os
 import json
 from pathlib import Path
-from PyQt5.QtWidgets import QAction, QFileDialog
-from PyQt5.QtGui import QIcon
+from qgis.PyQt.QtWidgets import QAction, QFileDialog
+from qgis.PyQt.QtGui import QIcon
 from qgis.core import *
 
 from .resources import *
